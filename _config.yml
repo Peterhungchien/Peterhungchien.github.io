@@ -1,6 +1,6 @@
 # Site Settings
 name: The Green Light
-remote_theme: jekflix
+remote_theme: thiagorossener/jekflix-template
 theme: jekflix
 title: The Green Light
 description: So we beat on, boats against the current, borne back ceaselessly into the past.
