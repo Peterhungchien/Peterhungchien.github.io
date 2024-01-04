@@ -1,0 +1,66 @@
+---
+---
+
+$themeColor: #5e8fff;
+$primaryDark: #141414;
+$accentDark: #ffffff;
+$lightGray: #f2f2f2;
+$texts: #333333;
+/* CSS for citations */
+/* General Styles */
+#quarto-appendix {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #333;
+    padding: 1em;
+    background-color: #f8f8f8;
+  }
+  
+  /* Appendix Heading */
+  .quarto-appendix-heading {
+    font-family: 'Georgia', Times, serif;
+    color: #000;
+    margin-bottom: 0.5em;
+  }
+  
+  /* References */
+  .references {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .csl-entry {
+    margin-bottom: 0.5em;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+  }
+  
+  .csl-entry a {
+    text-decoration: none;
+    color: #0056b3;
+  }
+  
+  .csl-entry a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Utility Classes */
+  .hanging-indent {
+    margin-left: 1.5em;
+    text-indent: -1.5em;
+  }
+  
+  .anchored {
+    position: relative;
+  }
+  
+  .anchored::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background-color: #0056b3;
+  }
+  
+@import "jekflix";

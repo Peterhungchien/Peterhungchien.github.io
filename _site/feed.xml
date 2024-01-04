@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.4">Jekyll</generator><link href="http://localhost:3001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:3001/" rel="alternate" type="text/html" /><updated>2024-01-04T15:51:13+08:00</updated><id>http://localhost:3001/feed.xml</id><title type="html">The Green Light</title><subtitle>So we beat on, boats against the current, borne back ceaselessly into the past.</subtitle><entry><title type="html">Study Notes: Existence of Nash Equilibrium</title><link href="http://localhost:3001/existence-of-NE/" rel="alternate" type="text/html" title="Study Notes: Existence of Nash Equilibrium" /><published>2023-04-11T00:00:00+08:00</published><updated>2023-04-11T00:00:00+08:00</updated><id>http://localhost:3001/existence-of-NE</id><content type="html" xml:base="http://localhost:3001/existence-of-NE/"><![CDATA[<main class="content" id="quarto-document-content">
+
+<p>This series of study notes serves as a review of the book <em>A Course in Game Theory</em> by Ariel Rubinstein and Martin J. Osborne. I will post my proof of a important theorem or my understanding of some significant result. If only every ‘game’ was as simple as a game…😰</p>
+<section class="level1" id="kakutani-fixed-point-theorem-and-existence-of-ne">
+<h1>Kakutani Fixed Point Theorem and Existence of NE</h1>
+<p>The book states that “The existence of an equilibrium shows that the game is consistent with a steady state solution. Further, the existence of equilibria for a family of games allows us to study properties of these equilibria without finding them explicitly”. And it turns out that the proof of the existence of equilibria only requires elementary mathematics if one knows the Kakutani Fixed Point Theorem.</p>
+<section class="level2" id="kakutani-fixed-point-theorem">
+<h2 class="anchored" data-anchor-id="kakutani-fixed-point-theorem">Kakutani Fixed Point Theorem</h2>
+<p>Suppose <span class="math inline">\(X\)</span> is a nonempty, compact and convex subset of some Euclidean space <span class="math inline">\(R^n\)</span>, and a function <span class="math inline">\(f:X\rightarrow 2^X\)</span> such that:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\forall x \in X\)</span>, <span class="math inline">\(f(x)\)</span> is nonempty and convex.</p></li>
+<li><p><span class="math inline">\(f\)</span> has a closed graph.</p></li>
+</ol>
+<p>Then <span class="math inline">\(\exists x^* \in X\)</span> such that <span class="math inline">\(x^* \in f(x^*)\)</span>.</p>
+<p>This is a illustrative example of this theorem from Wikipedia:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img class="img-fluid figure-img" src="/assets/images/kakutani.svg"/></p>
+<figcaption class="figure-caption">In this case, f has infinitely many fixed points.</figcaption>
+</figure>
+</div>
+<p>Why can this theorem be used to prove the existence of a Nash Equilibrium? For a game <span class="math inline">\(G=&lt;N,(A_i),(\succsim_i)&gt;\)</span>, given an action profile <span class="math inline">\(a\in A=\times_{i\in N} A_i\)</span>, we can pin down the possible best responses of each player, <span class="math inline">\(B_i(a)\)</span>. And the joint responses is <span class="math inline">\(B(a)=\times_{i\in N} B_i(a)\)</span>, which is a subset of A, therefore the joint best response of all players given an action profile is the function value of <span class="math inline">\(B:A \rightarrow 2^A\)</span>.</p>
+</section>
+<section class="level2" id="existence-theorem-of-nash-equilibria">
+<h2 class="anchored" data-anchor-id="existence-theorem-of-nash-equilibria">Existence Theorem of Nash Equilibria</h2>
+<p>The strategic game <span class="math inline">\(&lt;N,(A_i),(\succsim_i)&gt;\)</span> has a Nash Equilibrium if for <span class="math inline">\(\forall i \in N\)</span></p>
+<ul>
+<li><span class="math inline">\(A_i\)</span> is a nonempty, compact and convex subset of a Euclidean space.</li>
+</ul>
+<!-- -->
+<ul>
+<li><span class="math inline">\(\succsim_i\)</span> is a continuous and quasi-concave on <span class="math inline">\(A_i\)</span>. (Define a preference relation <span class="math inline">\(\succsim_i\)</span> over <span class="math inline">\(A\)</span> on <span class="math inline">\(A_i\)</span> to be quasi-concave if the set <span class="math inline">\(\{a_i \in A_i: (a_{-i}^*,a_i) \succsim a^*\}\)</span> is convex.)</li>
+</ul>
+<p>The proof given by the authors are too concise and omit lots of details, so I here provide a more long-winded version:</p>
+<p>Define <span class="math inline">\(B:A \rightarrow 2^A\)</span> by <span class="math inline">\(B(a) = \times_{i \in N} B_i(a_{-i})\)</span>. Since each <span class="math inline">\(A_i\)</span> is nonempty, compact and convex, <span class="math inline">\(A = \times_{i \in N} A_i\)</span> is also nonempty, compact and convex.</p>
+<p>For <span class="math inline">\(\forall i \in N\)</span>, define <span class="math inline">\(D_i(a^*) = \{a_i \in A: (a_i, a_{-i}^*) \succsim_i a^* \}\)</span>. Then since <span class="math inline">\(\succsim_i\)</span> is continuous, <span class="math inline">\(D_i(a^*)\)</span> is closed and thus compact for each <span class="math inline">\(a^*\)</span>. And we have <span class="math inline">\(B_i(a_{-i}^*) = \cap_{a_i \in A} D_i((a_i,a_{-i}^*))\)</span>. Obviously <span class="math inline">\(a_i \in D_i((a_i,a_{-i}^*))\)</span>, therefore any finite intersection of <span class="math inline">\(D_i((a_i,a_{-i}^*))\)</span> is nonempty. (Given finite number of actions <span class="math inline">\(a_{i,1},a_{i,2},…a_{i,n}\)</span>, <span class="math inline">\(\exists a_{i,n_0}\)</span> s.t. <span class="math inline">\((a_{i,n_0},a_{-i}^*) \succsim_i (a_{i,j},a_{-i}^*) \forall 1\leq j \leq n\)</span>, then <span class="math inline">\(a_{i,n_0} \in \cap_{1\leq j \leq n} D_i((a_{i,j},a_{-i}^*))\)</span> .) Hence <span class="math inline">\(B_i(a_{-i}^*)\)</span> is nonempty <span class="citation" data-cites="rudin_principles_1976">(see Theorem 2.36 in <a href="#ref-rudin_principles_1976" role="doc-biblioref">Rudin 1976</a>)</span>.</p>
+<p>And since <span class="math inline">\(\succsim_i\)</span> is quasi-concave on <span class="math inline">\(A_i\)</span>, each <span class="math inline">\(D_i((a_i,a_{-i}^*))\)</span> is convex and <span class="math inline">\(Bi(a_{-i})^*\)</span> is convex. Therefore, for each <span class="math inline">\(i\)</span>, <span class="math inline">\(B_i(a_{-i}^*)\)</span> is nonempty and convex, so is <span class="math inline">\(B(a^*)\)</span>.</p>
+<p>To prove that the graph of <span class="math inline">\(B\)</span>, suppose we have a sequence <span class="math inline">\(\{(a_n,b_n): a_n \in A, b_n \in B(a_n) \}\)</span> with <span class="math inline">\(a_n \rightarrow a\)</span> and <span class="math inline">\(b_n \rightarrow b\)</span>. Then for each <span class="math inline">\(i \in N\)</span>, <span class="math inline">\((b_{n,i},a_{n,-i}) \succsim_i (a_{i'},a_{n,-i}) \forall n \forall a_{i'} \in A_i\)</span>. Take limit on both sides and use the continuity of <span class="math inline">\(\succsim_i\)</span> we get <span class="math inline">\((b_{i},a_{-i}) \succsim_i (a_{i'},a_{-i}) \forall a_{i'} \in A_i\)</span>, hence <span class="math inline">\(b \in B(a)\)</span>.</p>
+<p>To recap, we have proved that <span class="math inline">\(A\)</span> is a nonempty, compact and convex subset of some Euclidean space, and <span class="math inline">\(B(a): A \rightarrow 2^A\)</span> is nonempty and convex for each <span class="math inline">\(a \in A\)</span> and has a closed graph. Therefore according to Kakutani Fixed Point Theorem <span class="math inline">\(\exists a^*\)</span> such that <span class="math inline">\(a^* \in B(a^*)\)</span>.</p>
+<section class="level3" id="comment">
+<h3 class="anchored" data-anchor-id="comment">Comment</h3>
+<p>The proof would be simpler if we have utility functions instead of only preferences, in which case we can apply the extreme value theorem. Actually, the technique of constructing a ‘preferred set’ given a choice (<span class="math inline">\(D_i(a^*)\)</span> in my proof) is used to prove the existence of a utility function when the preference is well-behaved <span class="citation" data-cites="rader_existence_1963">(see <a href="#ref-rader_existence_1963" role="doc-biblioref">Rader 1963</a>)</span>.</p>
+</section>
+</section>
+</section>
+<div class="default" id="quarto-appendix"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div class="references csl-bib-body hanging-indent" id="refs" role="list">
+<div class="csl-entry" id="ref-rader_existence_1963" role="listitem">
+Rader, Trout. 1963. <span>“The <span>Existence</span> of a <span>Utility</span> <span>Function</span> to <span>Represent</span> <span>Preferences</span>.”</span> <em>The Review of Economic Studies</em> 30 (3): 229. <a href="https://doi.org/10.2307/2296323">https://doi.org/10.2307/2296323</a>.
+</div>
+<div class="csl-entry" id="ref-rudin_principles_1976" role="listitem">
+Rudin, Walter. 1976. <em>Principles of <span>Mathematical</span> <span>Analysis</span></em>. 3rd edition. Auckland: McGraw Hill Higher Education.
+</div>
+</div></section></div></main>]]></content><author><name>Hungchien</name></author><category term="Math" /><category term="Economics" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:3001/assets/images/susato.jpg" /><media:content medium="image" url="http://localhost:3001/assets/images/susato.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

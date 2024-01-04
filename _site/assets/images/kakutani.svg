@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="20.091cm" height="21.264cm" viewBox="-0.021 -0.126 20.071 21.138"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="0.050" y="0.050" width="19.950" height="19.950" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="0.050" y="0.050" width="19.950" height="19.950" fill="none" stroke="#000000" stroke-width="0.100" />
+<polygon fill="#D7D7D7" stroke="none" stroke-width="0.001" points="0.150,0.200 19.900,4.888 19.900,10.038 "/>
+<polygon fill="none" stroke="#FFFFFF" stroke-width="0.001"  points="0.150,0.200 19.900,4.888 19.900,10.038 "/>
+<line x1="0.050" y1="20.000" x2="20.000" y2="0.050" stroke="#FF0000" stroke-width="0.100" stroke-dasharray="0.10,0.10"/>
+<line x1="14.500" y1="20.050" x2="14.495" y2="-0.076" stroke="#0000FF" stroke-width="0.100" stroke-dasharray="0.20,0.06,0.02,0.06,0.02,0.06"/>
+<text x="14.075" y="20.740"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+0.72</text>
+<text x="0.975" y="17.340"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+y=x</text>
+<text x="4.575" y="3.575"  fill="#000000" text-anchor="start" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+f(x) = [ 1-x/2, 1-x/4 ]</text>
+</svg>

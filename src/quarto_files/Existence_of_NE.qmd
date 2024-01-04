@@ -1,0 +1,57 @@
+---
+title: "Study Notes: Existence of Nash Equilibrium"
+author: "Hungchien"
+date: 2023-04-11
+categories: [Math, Economics]
+from: markdown+emoji
+bibliography: ../../assets/my_lib.bib
+image: /assets/images/kakutani.svg
+---
+
+This series of study notes serves as a review of the book *A Course in Game Theory* by Ariel Rubinstein and Martin J. Osborne. I will post my proof of a important theorem or my understanding of some significant result. If only every 'game' was as simple as a game...😰
+
+# Kakutani Fixed Point Theorem and Existence of NE
+
+The book states that "The existence of an equilibrium shows that the game is consistent with a steady state solution. Further, the existence of equilibria for a family of games allows us to study properties of these equilibria without finding them explicitly". And it turns out that the proof of the existence of equilibria only requires elementary mathematics if one knows the Kakutani Fixed Point Theorem.
+
+## Kakutani Fixed Point Theorem
+
+Suppose $X$ is a nonempty, compact and convex subset of some Euclidean space $R^n$, and a function $f:X\rightarrow 2^X$ such that:
+
+1.  $\forall x \in X$, $f(x)$ is nonempty and convex.
+
+2.  $f$ has a closed graph.
+
+Then $\exists x^* \in X$ such that $x^* \in f(x^*)$.
+
+This is a illustrative example of this theorem from Wikipedia:
+
+![In this case, f has infinitely many fixed points.](/assets/images/kakutani.svg)
+
+Why can this theorem be used to prove the existence of a Nash Equilibrium? For a game $G=<N,(A_i),(\succsim_i)>$, given an action profile $a\in A=\times_{i\in N} A_i$, we can pin down the possible best responses of each player, $B_i(a)$. And the joint responses is $B(a)=\times_{i\in N} B_i(a)$, which is a subset of A, therefore the joint best response of all players given an action profile is the function value of $B:A \rightarrow 2^A$.
+
+## Existence Theorem of Nash Equilibria
+
+The strategic game $<N,(A_i),(\succsim_i)>$ has a Nash Equilibrium if for $\forall i \in N$
+
+-   $A_i$ is a nonempty, compact and convex subset of a Euclidean space.
+
+<!-- -->
+
+-   $\succsim_i$ is a continuous and quasi-concave on $A_i$. (Define a preference relation $\succsim_i$ over $A$ on $A_i$ to be quasi-concave if the set $\{a_i \in A_i: (a_{-i}^*,a_i) \succsim a^*\}$ is convex.)
+
+The proof given by the authors are too concise and omit lots of details, so I here provide a more long-winded version:
+
+Define $B:A \rightarrow 2^A$ by $B(a) = \times_{i \in N} B_i(a_{-i})$. Since each $A_i$ is nonempty, compact and convex, $A = \times_{i \in N} A_i$ is also nonempty, compact and convex.
+
+For $\forall i \in N$, define $D_i(a^*) = \{a_i \in A: (a_i, a_{-i}^*) \succsim_i a^* \}$. Then since $\succsim_i$ is continuous, $D_i(a^*)$ is closed and thus compact for each $a^*$. And we have $B_i(a_{-i}^*) = \cap_{a_i \in A} D_i((a_i,a_{-i}^*))$. Obviously $a_i \in D_i((a_i,a_{-i}^*))$, therefore any finite intersection of $D_i((a_i,a_{-i}^*))$ is nonempty. (Given finite number of actions $a_{i,1},a_{i,2},…a_{i,n}$, $\exists a_{i,n_0}$ s.t. $(a_{i,n_0},a_{-i}^*) \succsim_i (a_{i,j},a_{-i}^*) \forall 1\leq j \leq n$, then $a_{i,n_0} \in \cap_{1\leq j \leq n} D_i((a_{i,j},a_{-i}^*))$ .) Hence $B_i(a_{-i}^*)$ is nonempty [see Theorem 2.36 in @rudin_principles_1976].
+
+And since $\succsim_i$ is quasi-concave on $A_i$, each $D_i((a_i,a_{-i}^*))$ is convex and $Bi(a_{-i})^*$ is convex. Therefore, for each $i$, $B_i(a_{-i}^*)$ is nonempty and convex, so is $B(a^*)$.
+
+To prove that the graph of $B$, suppose we have a sequence $\{(a_n,b_n): a_n \in A, b_n \in B(a_n) \}$ with $a_n \rightarrow a$ and $b_n \rightarrow b$. Then for each $i \in N$, $(b_{n,i},a_{n,-i}) \succsim_i (a_{i'},a_{n,-i}) \forall n \forall a_{i'} \in A_i$. Take limit on both sides and use the continuity of $\succsim_i$ we get $(b_{i},a_{-i}) \succsim_i (a_{i'},a_{-i}) \forall a_{i'} \in A_i$, hence $b \in B(a)$.
+
+To recap, we have proved that $A$ is a nonempty, compact and convex subset of some Euclidean space, and $B(a): A \rightarrow 2^A$ is nonempty and convex for each $a \in A$ and has a closed graph. Therefore according to Kakutani Fixed Point Theorem $\exists a^*$ such that $a^* \in B(a^*)$.
+
+### Comment
+
+The proof would be simpler if we have utility functions instead of only preferences, in which case we can apply the extreme value theorem. Actually, the technique of constructing a 'preferred set' given a choice ($D_i(a^*)$ in my proof) is used to prove the existence of a utility function when the preference is well-behaved [see @rader_existence_1963].
